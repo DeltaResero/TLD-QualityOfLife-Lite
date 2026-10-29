@@ -103,21 +103,6 @@ namespace QualityOfLife
         }
     }
 
-    [HarmonyPatch( typeof( Panel_HUD ), "UpdateSafehouse" )]
-    internal class Patch_Panel_HUD_UpdateSafehouse
-    {
-        static void Postfix( Panel_HUD __instance )
-        {
-            if ( Settings.Instance.EnableMod && Settings.Instance.SafehouseDayTimeOnly )
-            {
-                if ( TimeOfDay.Instance != null && !TimeOfDay.Instance.IsDayWithExtendedHours( 0 ) )
-                {
-                    WidgetUtils.SetActive( __instance?.m_SafehouseRoot, false );
-                }
-            }
-        }
-    }
-
 	[HarmonyPatch( typeof( Panel_HUD ), "UpdateStaminaBar" )]
 	internal class Patch_Panel_HUD_UpdateStaminaBar
 	{

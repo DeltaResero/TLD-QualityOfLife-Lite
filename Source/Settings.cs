@@ -67,17 +67,13 @@ namespace QualityOfLife
         public bool CraftRememberFilter = true;
 
 
-        [Section( "Difficulty" )]
+        [Section( "Gameplay" )]
 		[Name( "Item Drop Rotation" )]
 		[Description( "The rotation of items when dropped.\n"+
 					  "StickNorth - Use base game behaviour.\n"+
 					  "PlayerFacing - Drop items facing the same direction as the player.\n"+
 					  "Random - Drop items facing a random diration." )]
 		public ItemDropRotationType ItemDropRotation = ItemDropRotationType.PlayerFacing;
-
-        [Name( "Safehouse Day Time Only" )]
-        [Description( "Restrict using safehouse customization to day time only." )]
-        public bool SafehouseDayTimeOnly = true;
 
 
         [Section( "Fire" )]

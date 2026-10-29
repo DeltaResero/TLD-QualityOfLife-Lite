@@ -1,5 +1,5 @@
 # Quality Of Life
-A mod for The Long Dark that makes several changes to the UI in hopes to make the game more consistent and easier to control.  Also contains some options to make the game more difficult.
+A mod for The Long Dark that makes several changes to the UI in hopes to make the game more consistent and easier to control.
 
 > [!IMPORTANT]
 > I used MelonLoader v0.7.1 for testing.
@@ -16,7 +16,7 @@ When true, plays the new harvest anims, when false uses the old progress bar.
 ### Remember Filter
 Remembers which crafting filter was selected, and restores it when the crafting UI is opened.
 
-## Difficulty
+## Gameplay
 ### Item Drop Rotation
 The rotation of items when dropped.
 - StickNorth - Use base game behaviour.
