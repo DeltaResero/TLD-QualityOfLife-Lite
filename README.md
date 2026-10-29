@@ -2,12 +2,24 @@
 A mod for The Long Dark that makes several changes to the UI in hopes to make the game more consistent and easier to control.
 
 > [!IMPORTANT]
-> I used MelonLoader v0.7.1 for testing.
+> Tested with The Long Dark 2.58 and MelonLoader v0.7.3.
 
 > [!IMPORTANT]
 > Quality Of Life requires the ModSettings mod to be installed.  (https://tldmods.com/)
 
+# Building
+The project builds against the game assemblies that MelonLoader generates, so run the game once with MelonLoader installed (and again after each game update) before building.
+
+- Requires the .NET SDK (8 or newer).  The mod itself targets .NET 6, which MelonLoader runs mods on.
+- The game folder is found through Steam's library list.  For a non-Steam copy, or if it isn't found, set it with `-p:TLDDir=/path/to/TheLongDark` or a `TLDDir` environment variable.
+- `dotnet build -c Debug` only compiles.
+- `dotnet build -c Release` also copies `QualityOfLife.dll` into the game's `Mods` folder and creates `TLD-QualityOfLife-<version>.zip`.
+
 # Features
+## Mod
+### Enable Mod
+Enable / Disable Mod.  Allows turning off all features without changing individual settings.
+
 ## Animation
 ### Play Harvest Anims
 When true, plays the new harvest anims, when false uses the old progress bar.
@@ -21,20 +33,21 @@ Remembers which crafting filter was selected, and restores it when the crafting 
 The rotation of items when dropped.
 - StickNorth - Use base game behaviour.
 - PlayerFacing - Drop items facing the same direction as the player.
-- Random - Drop items facing a random diration.
+- Random - Drop items facing a random direction.
 
 ## Fire
 ### Auto-Select Lit Torch
 Auto selects the torch as the fire starter if the player is holding a lit torch.
 
 ### Auto-Select Mag Lens
-If the the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled.
+If the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled.
 
 ### Auto-Skip Birch Bark
-Auto selects next tinder type when Fire Start UI is opened.  This prevents accidental usage of Birch Bark as tinder.\nIf tinder is required and Birch Bark is the only tinder available, this does nothing as the next item is still Birch Bark.
+Auto selects next tinder type when Fire Start UI is opened.  This prevents accidental usage of Birch Bark as tinder.
+If tinder is required and Birch Bark is the only tinder available, this does nothing as the next item is still Birch Bark.
 
 ### Remember Selection
-Remember previous selected items and auto select them.  Above options take precedence is enabled.
+Remember previous selected items and auto select them.  Above options take precedence if enabled.
 
 ## Fishing
 ### Remember Selection
@@ -47,19 +60,22 @@ Show remaining bait on fishing UI.
 Show Tipup condition on fishing UI.
 
 ## Input
+### Journal Opens Journal
+Makes the journal key open the journal, not DLC objectives.
+
 ### Highlight Selection
-Changes the background color of items on the Harvest and FireStart UI to show which row has keyboard focus.
+Changes the background color of items on the Harvest, FireStart and IceFishing UI to show which row has keyboard focus.
 
 ### UI Extra Controls
-Adds extra shortcut keys to verious UI screens.
-- Affliciton:
+Adds extra shortcut keys to various UI screens.
+- Affliction:
     - Interact: Treats the selected wound.
     - A / D / MouseWheel: Scrolls the wound list.
 - Badges:
     - A / D / MouseWheel: Scrolls the active list.
     - Tab: Cycles between Challenges and Feats.
 - BasicMenu:
-    - Interact: Selects the highlight menu option.
+    - Interact: Selects the highlighted menu option.
 - Breakdown:
     - Interact: Starts breakdown.
     - A / D / MouseWheel: Scrolls tool list.
@@ -75,7 +91,10 @@ Adds extra shortcut keys to verious UI screens.
     - Tab: Changes focus to the other side.
 - Cooking:
     - Interact: Start cooking.
-    - MouseWheel: Increase / Decrease what water amount when making water.
+    - Drop: Secondary cooking action.
+- Cook Water:
+    - Interact: Start boiling / melting.
+    - MouseWheel: Increase / Decrease the water amount.
 - Crafting:
     - Interact: Start crafting.
     - A / D: Increase / Decrease quantity.
@@ -98,42 +117,42 @@ Adds extra shortcut keys to verious UI screens.
     - Interact: Examines the selected item.
 - Inventory Examine:
     - Escape: Cancel in-progress item repair.
-    - A / D / MouseWheel: Increase/Decrease read time.
+    - A / D / MouseWheel: Increase / Decrease read time.
     - Interact: Start reading / Select action tool / Select action.
-- Log
-    - Auto scroll to botton of the daily list when opened.
-    - Interact: Selects selected sub-screen / Selects select item in sub-screens.
-- MainMenu
+- Log:
+    - Auto scroll to bottom of the daily list when opened.
+    - Interact: Opens the selected sub-screen / Selects the selected item in sub-screens.
+- MainMenu:
     - Equip: Toggle selected feat.
     - Interact: Continue on the feats screen.
     - MouseWheel: Scroll feats list.
-- Map
+- Map:
     - A / D: Cycle shown region map.
     - Tab: Toggle world map.
-- Milling
+- Milling:
     - Interact: Start repairing.
-- Pick Units
+- Pick Units:
     - Interact: Pick selected number of units.
     - Equip: Pick all units.
-- Pick Water
-    - Interact: Take select amount of water.
+- Pick Water:
+    - Interact: Take selected amount of water.
     - Equip: Take all water.
 - Rest:
     - Interact: Start PassTime / Rest.
     - Tab: Cycle between PassTime / Rest.
     - Drop: Pickup bedroll.
     - A / D / MouseWheel: Increase / Decrease time.
-- Select Region Map
+- Select Region Map:
     - Interact: Continue with selected region.
-- Snow Shelter Build
+- Snow Shelter Build:
     - Interact: Start building.
-- Show Shelter Interact
+- Snow Shelter Interact:
     - Interact: Start selected action.
-- Torch Light
+- Torch Light:
     - Interact: Use selected item.
-- Weapon Picker
+- Weapon Picker:
     - Equip / Interact: Use selected weapon.
-- Safe Cracking
+- Safe Cracking:
     - Interact: Opens safe if unlocked.
     - MouseWheel: Rotate safe dial.
     - Precision Rotate: When held, slows down mouse wheel rotation.
@@ -142,7 +161,7 @@ Adds extra shortcut keys to verious UI screens.
 Which type of items held in player's hands can be dropped with the Drop key. (None, Any, LightSource, NonWeapons)
 
 ### QuickSelect Hold Duration
-Hold long QuickSelect Key must be held down to show Radial UI. (Default: 0.25)
+How long a QuickSelect key must be held down to show the Radial UI. (Default: 0.25)
 
 ### Accept / Interact
 The key for accepting menu choices.
@@ -151,16 +170,19 @@ The key for accepting menu choices.
 The key for dropping items.
 
 ### Equip / Consume
-The key equipping items or consuming them.
+The key for equipping items or consuming them.
+
+### Objectives
+The key to show the objectives menu.
+
+### Trades
+The key to show the trades menu.
 
 ### Precision Rotate
 When this key is held, rotating the safe dial with mouse wheel is more precise.
 
 ### Navigate Quick Select
 Quick select key to equip Charcoal.
-
-### Crafting UI
-Quick select key to toggle the crafting UI.
 
 ### LightSource Radial
 Quick select key to show the LightSource radial UI. (Hold to show menu. Press for default behaviour.)
@@ -201,11 +223,27 @@ A vertical offset applied to the buff notification UI.
 ### Console Dark Mode
 Change the console to use a dark mode color scheme.
 
+### Hypothermia Status Bar
+Show hypothermia risk on cold status bar.
+
 ### Weight Label
 Show a weight label on the hud.
+- None - Weight Label is disabled.
+- AlwaysOn - Weight Label is always visible.
+- AutoHide - Weight Label fades with the other hud elements.
 
 ### Wind Status Bar
 Show a wind status bar.
+- None - Wind Status Bar is disabled.
+- DirectionOnly - Only shows wind direction.
+- DirectionAndSpeed - Shows both wind direction and speed.
+- ShelterOnly - Only shows the shelter status icon.
+
+### Show Stamina Until Full
+Show the stamina bar until it is fully recovered.
 
 ### Show Temperature Labels
 Show labels on the cold and wind status bars that display FeelsLike and WindChill temps.
+
+### ScrollWheel Item Selection
+ScrollWheel changes selected item instead of changing the page.
