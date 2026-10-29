@@ -81,6 +81,6 @@
 
 	<Target Name="Zip" AfterTargets="GetAssmeblyVersion" Condition=" '$(Configuration)' == 'Release' ">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(IntermediateOutputPath)zip" />
-		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-$(AssemblyName)-%(MyAssemblyIdentities.Version).zip" Overwrite="true" />
+		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-$(AssemblyName)-Lite-%(MyAssemblyIdentities.Version).zip" Overwrite="true" />
 	</Target>
 </Project>
