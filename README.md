@@ -29,10 +29,6 @@ The rotation of items when dropped.
 - PlayerFacing - Drop items facing the same direction as the player.
 - Random - Drop items facing a random diration.
 
-## Food
-### Cook Filter Reheat
-Filter reheatable items in the Cook UI.
-
 ## Fire
 ### Auto-Select Lit Torch
 Auto selects the torch as the fire starter if the player is holding a lit torch.

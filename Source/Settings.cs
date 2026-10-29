@@ -86,12 +86,6 @@ namespace QualityOfLife
         public bool SafehouseDayTimeOnly = true;
 
 
-        [Section( "Food" )]
-        [Name( "Cook Filter Reheat" )]
-        [Description( "Filter reheatable items in the Cook UI." )]
-        public bool FoodCookFilterReheat = true;
-
-
         [Section( "Fire" )]
         [Name( "Auto-Select Lit Torch" )]
         [Description( "Auto selects the torch as the fire starter if the player is holding a lit torch." )]
