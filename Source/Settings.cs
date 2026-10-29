@@ -227,10 +227,6 @@ namespace QualityOfLife
         [Description( "A vertical offset applied to the buff notification UI." )]
         public float BuffOffsetVertical = 0.5f;
 
-		[Name( "Clothing Condition Bars" )]
-		[Description( "When enabled, shows bars at the bottom of each clothing slot to show the current condition of the item." )]
-		public bool ClothingConditionBars = true;
-
         [Name( "Console Dark Mode" )]
         [Description( "Change the console to use a dark mode color scheme." )]
         public bool ConsoleDarkMode = true;
