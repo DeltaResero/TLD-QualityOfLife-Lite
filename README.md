@@ -29,22 +29,12 @@ The rotation of items when dropped.
 - PlayerFacing - Drop items facing the same direction as the player.
 - Random - Drop items facing a random diration.
 
-
-### Meat Settings
-Settings to control the min/max KG of meat that Bear, Deer, Moose and Wolf carcas will have.
-
 ## Food
 ### Cook Filter Reheat
 Filter reheatable items in the Cook UI.
 
 ### Eat Pick Units
 Show the Pick Units UI to select how many stackable food items to eat.
-
-### Scale Meat 1/3 Size
-Meat on the ground that has less than this percent of full calories is scaled to 1/3 size.
-
-### Scale Meat 2/3 Size
-Meat on the ground that has less than this percent of full calories is scaled to 2/3 size.
 
 ## Fire
 ### Auto-Select Lit Torch

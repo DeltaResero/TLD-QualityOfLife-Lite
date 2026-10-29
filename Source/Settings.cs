@@ -85,46 +85,6 @@ namespace QualityOfLife
         [Description( "Restrict using safehouse customization to day time only." )]
         public bool SafehouseDayTimeOnly = true;
 
-		[Name( "Bear Meat Min (KG)" )]
-		[Description( "The minimum amount of meat in KG a bear carcas will have. (Default: 25)" )]
-		[Slider(0f, 25f, 51)]
-		public float BearMeatMinKG = 25.0f;
-
-		[Name( "Bear Meat Max (KG)" )]
-		[Description( "The maximum amount of meat in KG a bear carcas will have. (Default: 40)" )]
-		[Slider(0f, 40f, 81)]
-		public float BearMeatMaxKG = 40.0f;
-
-		[Name( "Deer Meat Min (KG)" )]
-		[Description( "The minimum amount of meat in KG a deer carcas will have. (Default: 8)" )]
-		[Slider(0f, 8f, 17)]
-		public float DeerMeatMinKG = 8.0f;
-
-		[Name( "Deer Meat Max (KG)" )]
-		[Description( "The maximum amount of meat in KG a deer carcas will have. (Default: 12.5)" )]
-		[Slider(0f, 12.5f, 26)]
-		public float DeerMeatMaxKG = 12.5f;
-
-		[Name( "Moose Meat Min (KG)" )]
-		[Description( "The minimum amount of meat in KG a moose carcas will have. (Default: 30)" )]
-		[Slider(0f, 30f, 61)]
-		public float MooseMeatMinKG = 30.0f;
-
-		[Name( "Moose Meat Max (KG)" )]
-		[Description( "The maximum amount of meat in KG a moose carcas will have. (Default: 45)" )]
-		[Slider(0f, 45f, 91)]
-		public float MooseMeatMaxKG = 45.0f;
-
-		[Name( "Wolf Meat Min (KG)" )]
-		[Description( "The minimum amount of meat in KG a wolf carcas will have. (Default: 3)" )]
-		[Slider(0f, 3f, 7)]
-		public float WolfMeatMinKG = 3.0f;
-
-		[Name( "Wolf Meat Max (KG)" )]
-		[Description( "The maximum amount of meat in KG a wolf carcas will have. (Default: 6)" )]
-		[Slider(0f, 6f, 13)]
-		public float WolfMeatMaxKG = 6.0f;
-
 
         [Section( "Food" )]
         [Name( "Cook Filter Reheat" )]
@@ -134,16 +94,6 @@ namespace QualityOfLife
         [Name( "Eat Pick Units" )]
         [Description( "Show the Pick Units UI to select how many stackable food items to eat." )]
         public bool FoodEatPickUnits = true;
-
-		[Name( "Scale Meat 1/3 Size" )]
-		[Description( "Meat on the ground that has less than this percent of full calories is scaled to 1/3 size." )]
-		[Slider(0f, 100f, 101)]
-		public float FoodScaleMeatOneThird = 50.0f;
-
-		[Name( "Scale Meat 2/3 Size" )]
-		[Description( "Meat on the ground that has less than this percent of full calories is scaled to 2/3 size." )]
-		[Slider(0f, 100f, 101)]
-		public float FoodScaleMeatTwoThird = 100.0f;
 
 
         [Section( "Fire" )]
