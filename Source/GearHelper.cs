@@ -1,11 +1,20 @@
 ﻿using Il2Cpp;
 using Il2CppTLD.Gear;
 using Il2CppVLB;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace QualityOfLife
 {
     internal class GearHelper
     {
+        // Replacement for GearItem.LoadGearItemPrefab, which was removed in TLD 2.58.
+        public static GearItem? LoadGearItemPrefab( string Name )
+        {
+            GameObject? Prefab = Addressables.LoadAssetAsync<GameObject>( Name ).WaitForCompletion();
+            return Prefab?.GetComponent<GearItem>();
+        }
+
         public static int CompareGearItemByCondition( GearItem A, GearItem B )
         {
             float ConditionA = A.GetNormalizedCondition();

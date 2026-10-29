@@ -18,9 +18,9 @@ namespace QualityOfLife
                     if ( Interaction != null && Interaction.Fire != null )
                     {
                         Panel_PickUnits PickUnits = InterfaceManager.GetPanel<Panel_PickUnits>();
-                        if ( PickUnits != null )
+                        GearItem? Charcoal = GearHelper.LoadGearItemPrefab( "GEAR_Charcoal" );
+                        if ( PickUnits != null && Charcoal != null )
                         {
-                            GearItem Charcoal = GearItem.LoadGearItemPrefab( "GEAR_Charcoal" );
                             PickUnits.SetGearForHarvest( Charcoal );
                             PickUnits.m_numUnits = 1;
                             PickUnits.m_maxUnits = Interaction.Fire.GetAvailableCharcoalPieces();
