@@ -27,12 +27,24 @@
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
-	<!--The game install folder. Override with: dotnet build -p:TLDDir=/path/to/TheLongDark-->
-	<PropertyGroup Condition=" '$(TLDDir)' == '' And $([MSBuild]::IsOSPlatform('Windows')) ">
-		<TLDDir>D:\SteamLibrary\steamapps\common\TheLongDark</TLDDir>
-	</PropertyGroup>
+	<!--The game install folder is found through Steam's library list (TLD is app 305620).-->
+	<!--Override with: dotnet build -p:TLDDir=/path/to/TheLongDark, or a TLDDir environment variable.-->
+	<!--SteamDir can be overridden the same way if Steam itself lives somewhere unusual.-->
 	<PropertyGroup Condition=" '$(TLDDir)' == '' ">
-		<TLDDir>$(HOME)/.local/share/Steam/steamapps/common/TheLongDark</TLDDir>
+		<SteamDir Condition=" '$(SteamDir)' == '' And $([MSBuild]::IsOSPlatform('Windows')) ">$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\Valve\Steam', 'SteamPath', null, RegistryView.Default))</SteamDir>
+		<SteamDir Condition=" '$(SteamDir)' == '' And $([MSBuild]::IsOSPlatform('Windows')) ">$(MSBuildProgramFiles32)\Steam</SteamDir>
+		<SteamDir Condition=" '$(SteamDir)' == '' And Exists('$(HOME)/.steam/root/steamapps') ">$(HOME)/.steam/root</SteamDir>
+		<SteamDir Condition=" '$(SteamDir)' == '' And Exists('$(HOME)/.local/share/Steam/steamapps') ">$(HOME)/.local/share/Steam</SteamDir>
+		<SteamDir Condition=" '$(SteamDir)' == '' And Exists('$(HOME)/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps') ">$(HOME)/.var/app/com.valvesoftware.Steam/.local/share/Steam</SteamDir>
+
+		<_SteamLibraryFile>$(SteamDir)/steamapps/libraryfolders.vdf</_SteamLibraryFile>
+		<_SteamLibraryText Condition=" Exists('$(_SteamLibraryFile)') ">$([System.IO.File]::ReadAllText('$(_SteamLibraryFile)'))</_SteamLibraryText>
+		<!--The "path" of the library whose block lists app 305620 before the next library starts.-->
+		<_TLDLibraryPattern>(?s)^.*?"path"\s*"([^"]*)"(?:(?!"path").)*?"305620".*$</_TLDLibraryPattern>
+		<_TLDLibrary Condition=" '$(_SteamLibraryText)' != '' And $([System.Text.RegularExpressions.Regex]::IsMatch('$(_SteamLibraryText)', '$(_TLDLibraryPattern)')) ">$([System.Text.RegularExpressions.Regex]::Replace('$(_SteamLibraryText)', '$(_TLDLibraryPattern)', '$1').Replace('\\', '\'))</_TLDLibrary>
+
+		<TLDDir Condition=" '$(_TLDLibrary)' != '' And Exists('$(_TLDLibrary)/steamapps/common/TheLongDark') ">$(_TLDLibrary)/steamapps/common/TheLongDark</TLDDir>
+		<TLDDir Condition=" '$(TLDDir)' == '' ">$(SteamDir)/steamapps/common/TheLongDark</TLDDir>
 	</PropertyGroup>
 	<PropertyGroup>
 		<TLDMods Condition=" '$(TLDMods)' == '' ">$(TLDDir)/Mods</TLDMods>
@@ -50,7 +62,8 @@
 	</ItemGroup>
 
 	<Target Name="CheckTLDDir" BeforeTargets="ResolveAssemblyReferences">
-		<Error Condition="!Exists('$(TLDDir)/MelonLoader/Il2CppAssemblies')" Text="Il2CppAssemblies not found in '$(TLDDir)/MelonLoader'. Run the game once with MelonLoader installed, or set TLDDir." />
+		<Error Condition="!Exists('$(TLDDir)')" Text="The Long Dark was not found at '$(TLDDir)'. Set TLDDir to the game folder (dotnet build -p:TLDDir=/path/to/TheLongDark, or a TLDDir environment variable)." />
+		<Error Condition="!Exists('$(TLDDir)/MelonLoader/Il2CppAssemblies')" Text="Il2CppAssemblies not found in '$(TLDDir)/MelonLoader'. Run the game once with MelonLoader installed." />
 	</Target>
 
 	<Target Name="GetAssmeblyVersion" AfterTargets="Build">
