@@ -242,7 +242,7 @@ namespace QualityOfLife
 
         public static void OnLoad()
         {
-            Instance.AddToModSettings( "Quality of Life" );
+            Instance.AddToModSettings( BuildInfo.ModName );
         }
 
         protected override void OnConfirm()
