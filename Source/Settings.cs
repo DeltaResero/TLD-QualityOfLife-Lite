@@ -5,16 +5,6 @@ using UnityEngine;
 
 namespace QualityOfLife
 {
-	internal enum CatTailCalorieType
-	{
-		// Cat Tails have 1/3 the normal calories. (50)
-		OneThird = 0,
-		// Cat Tails have 2/3 the normal calories. (100)
-		TwoThird,
-		// Cat Tails have the normal amount of calories. (150).
-		Default
-	}
-
     internal enum DropItemType
     {
         // Disable dropping item in hand.
@@ -83,24 +73,6 @@ namespace QualityOfLife
 		[Name( "Allow Take Torch" )]
 		[Description( "Allows taking torchs from lit fires." )]
 		public bool FireAllowTakeTortch = true;
-
-		[Name( "Cat Tail Calories" )]
-		[Description( "The amount of calories Cat Tail stalks have.\n"+
-					  "OneThird - 1/3 the normal calories. (50)\n"+
-					  "TwoThird - 2/3 the normal calories. (100)\n"+
-					  "Default - the normal amount of calories. (150)"+
-					  "*Note*\n"+
-					  "Calorie count for inventory is saved. "+
-					  "Before removing/disabling this mod, set Cat Tail Calories back to Default and save the game." )]
-		public CatTailCalorieType CatTailCalories = CatTailCalorieType.Default;
-
-		[Name( "Cat Tail Harvest Stalk" )]
-		[Description( "Enable/Disable harvesting Cat Tail stalks." )]
-		public bool CatTailHarvestStalk = true;
-
-		[Name( "Cat Tail Harvest Tinder" )]
-		[Description( "Enable/Disable harvesting Cat Tail tinder." )]
-		public bool CatTailHarvestTinder = true;
 
 		[Name( "Item Drop Rotation" )]
 		[Description( "The rotation of items when dropped.\n"+
@@ -424,11 +396,6 @@ namespace QualityOfLife
         {
             base.OnConfirm();
             Patch_uConsole_Start.UpdateConsoleColor();
-
-			if ( EnableMod )
-			{
-				CatTailHelper.TryUpdateInventory();
-			}
         }
     }
 }

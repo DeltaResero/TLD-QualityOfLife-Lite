@@ -13,19 +13,12 @@ namespace QualityOfLife
 	{
         static bool Prefix( PlayerManager __instance )
 		{
-			bool CatTailDisabled = !Settings.Instance.CatTailHarvestStalk && !Settings.Instance.CatTailHarvestTinder;
-
-			if ( Settings.Instance.EnableMod && Settings.Instance.SeparateInteract || CatTailDisabled )
+			if ( Settings.Instance.EnableMod && Settings.Instance.SeparateInteract )
 			{
 				float Range = __instance.ComputeModifiedPickupRange( __instance.GetDefaultPlacementDistance() );
 				GameObject GameObj = __instance.GetInteractiveObjectUnderCrosshairs( Range );
 				if ( GameObj != null )
 				{
-					if ( CatTailDisabled && GameObj.name == "OBJ_CatTailShrub" )
-					{
-						return false;
-					}
-
 					IInteraction[] Interactions = GameObj.GetComponentsInChildren<IInteraction>();
 					foreach ( IInteraction Interaction in Interactions )
 					{

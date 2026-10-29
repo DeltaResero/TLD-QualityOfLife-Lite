@@ -96,14 +96,6 @@ namespace QualityOfLife
 						}
 					}
 				}
-
-                Il2CppSystem.Collections.Generic.List<GearItem> CatTailItems = new();
-				__instance.GearInInventory( "GEAR_CattailStalk", CatTailItems );
-
-				foreach ( GearItem Item in CatTailItems )
-				{
-					CatTailHelper.TryUpdateCalories( Item?.m_FoodItem );
-				}
 			}
 		}
 

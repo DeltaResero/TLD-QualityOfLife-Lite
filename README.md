@@ -7,9 +7,6 @@ A mod for The Long Dark that makes several changes to the UI in hopes to make th
 > [!IMPORTANT]
 > Quality Of Life requires the ModSettings mod to be installed.  (https://tldmods.com/)
 
-> [!WARNING]
-> When using **Cat Tail Calories**, calorie count for inventory is saved.  Before removing/disabling this mod, set Cat Tail Calories back to Default and save the game.
-
 > [!CAUTION]
 > **Pickup With Contents** in QoL v1.12.0 caused this mod to handle save/load for items in a Travois while in your inventory.  Before disabling the option or this mod, MAKE SURE all Travois in your inventory are empty and save, or save with QoL v1.13.0 or newer!  Otherwise you WILL loose all items inside such Travois!  This does not affect Travois that are deployed in the world.
 
@@ -25,21 +22,6 @@ Remembers which crafting filter was selected, and restores it when the crafting 
 ## Difficulty
 ### Allow Take Torch
 Allows taking torchs from lit fires.
-
-### Cat Tail Calories
-The amount of calories Cat Tail stalks have.
-- OneThird - 1/3 the normal calories. (50)
-- TwoThird - 2/3 the normal calories. (100)
-- Default - the normal amount of calories. (150)
-
-> [!WARNING]
-> When using **Cat Tail Calories**, calorie count for inventory is saved.  Before removing/disabling this mod, set Cat Tail Calories back to Default and save the game.
-
-### Cat Tail Harvest Stalk
-Enable/Disable harvesting Cat Tail stalks.
-
-### Cat Tail Harvest Tinder
-Enable/Disable harvesting Cat Tail tinder.
 
 ### Item Drop Rotation
 The rotation of items when dropped.
