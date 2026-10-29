@@ -52,10 +52,6 @@ Show remaining bait on fishing UI.
 ### Show Tipup Condition
 Show Tipup condition on fishing UI.
 
-## Fuel
-### Select Source
-When enabled, allows choosing which fuel source to use when refueling.
-
 ## Input
 ### Separate Interact
 Separate interact with objects so it doesn't share the same controls as shooting.

@@ -118,12 +118,6 @@ namespace QualityOfLife
 		public bool FishingShowTipupCondition = true;
 
 
-		[Section( "Fuel" )]
-		[Name( "Select Source" )]
-		[Description( "When enabled, allows choosing which fuel source to use when refueling." )]
-		public bool FuelSelectSource = true;
-
-
         [Section( "Input" )]
         [Name( "Journal Opens Journal" )]
         [Description( "Makes the journal key open the journal, not DLC objectives." )]
