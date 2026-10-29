@@ -33,15 +33,9 @@ The rotation of items when dropped.
 ### Cook Filter Reheat
 Filter reheatable items in the Cook UI.
 
-### Eat Pick Units
-Show the Pick Units UI to select how many stackable food items to eat.
-
 ## Fire
 ### Auto-Select Lit Torch
 Auto selects the torch as the fire starter if the player is holding a lit torch.
-
-### Charcoal Pick Units
-Show the Pick Units UI to select how much charcoal to take.
 
 ### Auto-Select Mag Lens
 If the the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled.

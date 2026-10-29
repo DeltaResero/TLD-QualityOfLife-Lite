@@ -91,19 +91,11 @@ namespace QualityOfLife
         [Description( "Filter reheatable items in the Cook UI." )]
         public bool FoodCookFilterReheat = true;
 
-        [Name( "Eat Pick Units" )]
-        [Description( "Show the Pick Units UI to select how many stackable food items to eat." )]
-        public bool FoodEatPickUnits = true;
-
 
         [Section( "Fire" )]
         [Name( "Auto-Select Lit Torch" )]
         [Description( "Auto selects the torch as the fire starter if the player is holding a lit torch." )]
         public bool FireAutoSelectLitTorch = true;
-
-        [Name( "Charcoal Pick Units" )]
-        [Description( "Show the Pick Units UI to select how much charcoal to take." )]
-        public bool FireCharcoalPickUnits = true;
 
         [Name( "Auto-Select Mag Lens" )]
         [Description( "If the the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled." )]
