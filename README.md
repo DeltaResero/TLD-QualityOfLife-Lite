@@ -7,7 +7,7 @@ A cut-down fork of [VonDoogles](https://github.com/VonDoogles)' [TLD-QualityOfLi
 > [!IMPORTANT]
 > Quality of Life Lite requires the ModSettings mod to be installed.  (https://tldmods.com/)
 >
-> It installs as `QualityOfLife.dll` and keeps the original's settings file, so it replaces the original mod rather than running beside it.
+> Don't install it alongside the original.  Both change the same menus, so if the original is also loaded this mod switches itself off and logs an error.  It keeps its own settings in `QualityOfLifeLite.json` and leaves the original's untouched.
 
 # Building
 The project builds against the game assemblies that MelonLoader generates, so run the game once with MelonLoader installed (and again after each game update) before building.
@@ -15,7 +15,7 @@ The project builds against the game assemblies that MelonLoader generates, so ru
 - Requires the .NET SDK (8 or newer).  The mod itself targets .NET 6, which MelonLoader runs mods on.
 - The game folder is found through Steam's library list.  For a non-Steam copy, or if it isn't found, set it with `-p:TLDDir=/path/to/TheLongDark` or a `TLDDir` environment variable.
 - `dotnet build -c Debug` only compiles.
-- `dotnet build -c Release` also copies `QualityOfLife.dll` into the game's `Mods` folder and creates `TLD-QualityOfLife-Lite-<version>.zip`.
+- `dotnet build -c Release` also copies `QualityOfLifeLite.dll` into the game's `Mods` folder and creates `TLD-QualityOfLife-Lite-<version>.zip`.
 
 # Features
 ## Mod
