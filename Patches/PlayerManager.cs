@@ -310,7 +310,12 @@ namespace QualityOfLife
 			{
 				if ( __instance.m_FoodItemEaten.m_StackableItem != null && __instance.m_FoodItemEaten.m_StackableItem.m_Units > 1 )
 				{
-					GearItem ItemPrefab = GearItem.LoadGearItemPrefab( __instance.m_FoodItemEaten.name );
+					GearItem? ItemPrefab = GearHelper.LoadGearItemPrefab( __instance.m_FoodItemEaten.name );
+					if ( ItemPrefab == null )
+					{
+						return true;
+					}
+
                     ItemPrefab.CacheComponents();
 
                     float CaloriesPerUnit = ItemPrefab.m_FoodItem.m_CaloriesTotal;
