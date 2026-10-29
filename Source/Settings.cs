@@ -175,11 +175,6 @@ namespace QualityOfLife
         [Description( "Quick select key to show the Weapon radial UI." )]
         public KeyCode WeaponKey = KeyCode.Alpha6;
 
-        [Name( "Auto Pickup" )]
-        [Description( "Modifier key to auto pickup items instead of inspecting them.\n"+
-					  "2024-06-26: Disabled for now until I have time to thoroughly investigate it. " )]
-        public KeyCode AutoPickupKey = KeyCode.LeftShift;
-
 
         [Section( "Radial" )]
         [Name( "Combine Items" )]

@@ -174,9 +174,6 @@ Quick select key to show the LightSource radial UI. (Hold to show menu. Press fo
 ### Weapon Radial
 Quick select key to show the Weapon radial UI. (Hold to show menu. Press for default behaviour.)
 
-### Auto Pickup
-Modifier key to auto pickup items instead of inspecting them.
-
 ## Radial
 ### Combine Items
 The radial menu will only show one item of each type.  Mouse wheel will select which item of that type is used. (IE: Birch Tea, Coffee)
