@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using Il2Cpp;
+﻿using Il2Cpp;
 using System.Reflection;
 using UnityEngine;
 
@@ -8,27 +7,37 @@ namespace QualityOfLife
     public static class ModInput
     {
         static bool CheckForUnityExplorer = true;
-        static Type? TypeUIManager = null;
+        static Func<bool>? UnityExplorerShowMenu = null;
+
+        /// <summary>
+        /// Finds UnityExplorer's UIManager.ShowMenu getter once and keeps it as a delegate.
+        /// Searches the loaded assemblies directly, as AccessTools.TypeByName logs a warning when the type is missing.
+        /// </summary>
+        static Func<bool>? FindUnityExplorerShowMenu()
+        {
+            Type? TypeUIManager = AppDomain.CurrentDomain.GetAssemblies()
+                .Select( Asm => Asm.GetType( "UnityExplorer.UI.UIManager", false ) )
+                .FirstOrDefault( Found => Found != null );
+
+            MethodInfo? Method = TypeUIManager?.GetProperty( "ShowMenu", BindingFlags.Public | BindingFlags.Static )?.GetMethod;
+            if ( Method != null && Method.ReturnType == typeof( bool ) )
+            {
+                return Method.CreateDelegate<Func<bool>>();
+            }
+            return null;
+        }
 
         public static bool ShouldProcessInput( KeyCode Key )
         {
             if ( CheckForUnityExplorer )
             {
                 CheckForUnityExplorer = false;
-                TypeUIManager = AccessTools.TypeByName( "UnityExplorer.UI.UIManager" );
+                UnityExplorerShowMenu = FindUnityExplorerShowMenu();
             }
 
-            if ( TypeUIManager != null )
+            if ( UnityExplorerShowMenu != null && UnityExplorerShowMenu() )
             {
-                MethodInfo? Method = TypeUIManager.GetMethod( "get_ShowMenu", BindingFlags.Public | BindingFlags.Static );
-                if ( Method != null )
-                {
-                    bool? ShowMenu = Method.Invoke( TypeUIManager, null ) as bool?;
-                    if ( ShowMenu != null && ShowMenu.Value )
-                    {
-                        return false;
-                    }
-                }
+                return false;
             }
 
             if ( uConsole.IsOn() )
