@@ -1,5 +1,5 @@
 # Quality Of Life
-A mod for The Long Dark that makes several changes to the UI in hopes to make the game more consistent and easier to control.
+A cut-down fork of [VonDoogles](https://github.com/VonDoogles)' [TLD-QualityOfLife](https://github.com/VonDoogles/TLD-QualityOfLife) mod for The Long Dark.  It keeps the UI and control changes that make the game more consistent and easier to control, and drops the rest.  This is a personal version trimmed down to the features I use, so see the original for the complete feature set.
 
 > [!IMPORTANT]
 > Tested with The Long Dark 2.58 and MelonLoader v0.7.3.
