@@ -1,6 +1,4 @@
-﻿using Il2Cpp;
-using ModSettings;
-using System.Reflection;
+﻿using ModSettings;
 using UnityEngine;
 
 namespace QualityOfLife
@@ -209,10 +207,6 @@ namespace QualityOfLife
 
 
 		[Section( "Travois" )]
-		[Name( "Pickup With Contents" )]
-		[Description( "When enabled, allows picking up a Travois while items are still inside.  Also enables transfering items to a Travois in your inventory." )]
-		public bool TravoisPickupWithContents = false;
-
 		[Name( "Show In Radial" )]
 		[Description( "When enabled, the travois will appear under the navigation radial menu.  This can be used to deploy the Travois." )]
 		public bool TravoisShowInRadial = true;
@@ -257,42 +251,6 @@ namespace QualityOfLife
         public static void OnLoad()
         {
             Instance.AddToModSettings( "Quality of Life" );
-        }
-
-        protected override void OnChange( FieldInfo field, object? oldValue, object? newValue )
-        {
-			string TravoisPickupWithContentsWarning = "\n\"Pickup With Contents\" in QoL v1.12.0 caused this mod to handle save/load for items in a Travois while in your inventory.  "+
-													  "Before disabling the option or this mod, MAKE SURE all Travois in your inventory are empty and save, or save with QoL v1.13.0 or newer!  "+
-													  "Otherwise you WILL loose all items inside such Travois!  "+
-													  "This does not affect Travois that are deployed in the world.";
-
-            if ( field.Name == nameof( TravoisPickupWithContents ) )
-            {
-                Panel_Confirmation Confirmation = InterfaceManager.GetPanel<Panel_Confirmation>();
-                if ( Confirmation != null )
-                {
-                    UISprite? BackGlow = Confirmation.m_GenericMessageGroup.m_Parent.transform.Find( "BG_Container /BackGlow" )?.GetComponent<UISprite>();
-
-					var OnWarningConfirm = () =>
-					{
-						Confirmation.m_GenericMessageGroup.m_MessageLabel.lineWidth /= 2;
-                        if ( BackGlow != null )
-                        {
-                            BackGlow.width /= 2;
-                        }
-                    };
-
-                    Confirmation.ShowErrorMessage( TravoisPickupWithContentsWarning, OnWarningConfirm );
-					Confirmation.m_GenericMessageGroup.m_MessageLabel.lineWidth *= 2;
-					Confirmation.m_GenericMessageGroup.m_MessageLabel_InputFieldTitle.text = "WARNING!!!";
-					WidgetUtils.SetActive( Confirmation.m_GenericMessageGroup.m_MessageLabel_InputFieldTitle, true );
-
-                    if ( BackGlow != null )
-                    {
-                        BackGlow.width *= 2;
-                    }
-                }
-            }
         }
 
         protected override void OnConfirm()

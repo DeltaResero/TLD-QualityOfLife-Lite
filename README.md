@@ -7,9 +7,6 @@ A mod for The Long Dark that makes several changes to the UI in hopes to make th
 > [!IMPORTANT]
 > Quality Of Life requires the ModSettings mod to be installed.  (https://tldmods.com/)
 
-> [!CAUTION]
-> **Pickup With Contents** in QoL v1.12.0 caused this mod to handle save/load for items in a Travois while in your inventory.  Before disabling the option or this mod, MAKE SURE all Travois in your inventory are empty and save, or save with QoL v1.13.0 or newer!  Otherwise you WILL loose all items inside such Travois!  This does not affect Travois that are deployed in the world.
-
 # Features
 ## Animation
 ### Play Harvest Anims
@@ -197,12 +194,6 @@ The radial menu will equip the lowest quality torch.
 Always show the torch light UI to select the starter item.  This helps prevent accidental usage of matches.
 
 ## Travois
-### Pickup With Contents
-When enabled, allows picking up a Travois while items are still inside.  Also enables transfering items to a Travois in your inventory.
-
-> [!CAUTION]
-> **Pickup With Contents** in QoL v1.12.0 caused this mod to handle save/load for items in a Travois while in your inventory.  Before disabling the option or this mod, MAKE SURE all Travois in your inventory are empty and save, or save with QoL v1.13.0 or newer!  Otherwise you WILL loose all items inside such Travois!  This does not affect Travois that are deployed in the world.
-
 ### Show In Radial
 When enabled, the travois will appear under the navigation radial menu.  This can be used to deploy the Travois.
 
