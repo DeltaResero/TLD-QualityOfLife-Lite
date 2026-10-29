@@ -213,10 +213,6 @@ namespace QualityOfLife
 		[Description( "When enabled, allows picking up a Travois while items are still inside.  Also enables transfering items to a Travois in your inventory." )]
 		public bool TravoisPickupWithContents = false;
 
-		[Name( "Use With Rope" )]
-		[Description( "When enabled, allows attaching a Travois to a rope and raising/lowering it at climb points." )]
-		public bool TravoisUseWithRope = false;
-
 		[Name( "Show In Radial" )]
 		[Description( "When enabled, the travois will appear under the navigation radial menu.  This can be used to deploy the Travois." )]
 		public bool TravoisShowInRadial = true;
