@@ -68,10 +68,6 @@ namespace QualityOfLife
 
 
         [Section( "Difficulty" )]
-		[Name( "Allow Take Torch" )]
-		[Description( "Allows taking torchs from lit fires." )]
-		public bool FireAllowTakeTortch = true;
-
 		[Name( "Item Drop Rotation" )]
 		[Description( "The rotation of items when dropped.\n"+
 					  "StickNorth - Use base game behaviour.\n"+

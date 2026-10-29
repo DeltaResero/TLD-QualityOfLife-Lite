@@ -17,9 +17,6 @@ When true, plays the new harvest anims, when false uses the old progress bar.
 Remembers which crafting filter was selected, and restores it when the crafting UI is opened.
 
 ## Difficulty
-### Allow Take Torch
-Allows taking torchs from lit fires.
-
 ### Item Drop Rotation
 The rotation of items when dropped.
 - StickNorth - Use base game behaviour.
