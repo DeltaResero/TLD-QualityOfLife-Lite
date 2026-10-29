@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
-using UnityEngine;
 
 namespace QualityOfLife
 {
@@ -17,11 +16,11 @@ namespace QualityOfLife
                 }
 
                 float Scroll = InputManager.GetScroll( __instance );
-                if ( Scroll > 0 || ModInput.GetKeyDown( __instance, KeyCode.A ) )
+                if ( Scroll > 0 )
                 {
                     __instance.PreviousGear();
                 }
-                else if ( Scroll < 0 || ModInput.GetKeyDown( __instance, KeyCode.D ) )
+                else if ( Scroll < 0 )
                 {
                     __instance.NextGear();
                 }
