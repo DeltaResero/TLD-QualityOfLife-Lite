@@ -85,7 +85,7 @@ Adds extra shortcut keys to verious UI screens.
     - Interact: Start the fire.
 - Gear Select:
     - Interact: Select gear.
-    - A / D / MouseWheel: Scroll the gear list.
+    - MouseWheel: Scroll the gear list.
 - IceFishing:
     - Interact: Start fishing.
     - A / D / MouseWheel: Increase / Decrease time.
