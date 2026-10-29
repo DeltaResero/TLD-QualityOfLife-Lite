@@ -127,10 +127,6 @@ namespace QualityOfLife
         [Description( "Changes the background color of items on the Harvest, FireStart and IceFishing UI to show which row has keyboard focus." )]
         public bool HighlightSelection = true;
 
-        [Name( "Rest Preset" )]
-        [Description( "Adds a preset button for 10 hours to the rest UI." )]
-        public bool RestPreset = true;
-
         [Name( "UI Extra Controls" )]
         [Description( "Adds extra shortcut keys to various UI. (See README.md)" )]
         public bool UIExtraControls = true;

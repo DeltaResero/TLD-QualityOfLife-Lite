@@ -56,9 +56,6 @@ Show Tipup condition on fishing UI.
 ### Highlight Selection
 Changes the background color of items on the Harvest and FireStart UI to show which row has keyboard focus.
 
-### Rest Preset
-Adds a preset button for 10 hours to the rest UI.
-
 ### UI Extra Controls
 Adds extra shortcut keys to verious UI screens.
 - Affliciton:
@@ -128,7 +125,6 @@ Adds extra shortcut keys to verious UI screens.
     - Interact: Take select amount of water.
     - Equip: Take all water.
 - Rest:
-    - Added button to set time directly to 10 hours.
     - Interact: Start PassTime / Rest.
     - Tab: Cycle between PassTime / Rest.
     - Drop: Pickup bedroll.
