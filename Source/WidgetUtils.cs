@@ -5,62 +5,6 @@ namespace QualityOfLife
 {
     public class WidgetUtils
     {
-		public static void GetControlSchemeMouse( Transform Parent, out UILabel? Label, out UISprite? Sprite )
-		{
-			Label = null;
-			Sprite = null;
-
-			foreach ( UIControllerScheme Scheme in Parent.GetComponentsInChildren<UIControllerScheme>( true ) )
-			{
-				if ( Scheme != null && Scheme.m_ControlScheme == UIControllerScheme.ControlScheme.Mouse )
-				{
-					Label = Scheme.GetComponentInChildren<UILabel>( true );
-					Sprite = Scheme.GetComponentInChildren<UISprite>( true );
-					return;
-				}
-			}
-		}
-
-		public static UIProgressBar? MakeProgressBar( string Name, Transform parent, int depth )
-		{
-			GameObject GameObj = new GameObject( Name );
-			if ( GameObj != null )
-			{
-				GameObj.transform.parent = parent;
-				GameObj.transform.localPosition = Vector3.zero;
-				GameObj.transform.localScale = Vector3.one;
-
-				UISprite? Background = MakeSprite( "Background", GameObj.transform, Vector3.zero, "progressbar_horizontal2" );
-				if ( Background != null )
-				{
-					Background.depth = depth;
-					Background.type = UIBasicSprite.Type.Filled;
-					Background.fillDirection = UIBasicSprite.FillDirection.Horizontal;
-					Background.pivot = UIWidget.Pivot.Left;
-				}
-				SetSprite( Background, "progressbar_horizontal2", 80, 24 );
-
-				UISprite? Foreground = MakeSprite( "Foreground", GameObj.transform, Vector3.zero, "whiteSquare" );
-				if ( Foreground != null )
-				{
-					Foreground.depth = depth + 1;
-					Foreground.type = UIBasicSprite.Type.Filled;
-					Foreground.fillDirection = UIBasicSprite.FillDirection.Horizontal;
-					Foreground.pivot = UIWidget.Pivot.Left;
-				}
-				SetSprite( Foreground, "whiteSquare", 56, 2 );
-
-				UIProgressBar? Progress = GameObj.AddComponent<UIProgressBar>();
-				if ( Progress )
-				{
-					Progress.foregroundWidget = Foreground;
-					Progress.fillDirection = UIProgressBar.FillDirection.LeftToRight;
-				}
-				return Progress;
-			}
-			return null;
-		}
-
         public static UISprite? MakeSprite( string Name, Transform parent, Vector3 offset, string SpriteName )
         {
             GameObject GameObj = new GameObject( Name );
@@ -77,27 +21,6 @@ namespace QualityOfLife
             }
             return null;
         }
-
-		public static void SetSprite( UISprite? Sprite, string SpriteName, int width = 0, int height = 0 )
-		{
-			if ( Sprite != null )
-			{
-				if ( Sprite.spriteName != SpriteName )
-				{
-					Sprite.spriteName = SpriteName;
-				}
-
-				if ( width != 0 )
-				{
-					Sprite.width = width;
-				}
-
-				if ( height != 0 )
-				{
-					Sprite.height = height;
-				}
-			}
-		}
 
         public static UIAtlas? FindAtlas( string AtlasName )
         {
@@ -144,26 +67,6 @@ namespace QualityOfLife
 
             Rect ScreenRect = UnityEngine.Rect.MinMaxRect( Min.x, Min.y, Max.x, Max.y );
             return ScreenRect.Contains( MouseLoc );
-        }
-
-        internal static void EnsureChildOrder( UIGrid? Grid, Component? ChildA, Component? ChildB )
-        {
-			if ( Grid != null && ChildA != null && ChildB != null )
-			{
-				int IndexA = Grid.GetIndex( ChildA.transform );
-				int IndexB = Grid.GetIndex( ChildB.transform );
-
-				if ( IndexA > IndexB && IndexA != -1 && IndexB != -1 )
-				{
-					Il2CppSystem.Collections.Generic.List<Transform> ChildList = new();
-					Grid.GetChildList( ChildList );
-
-					ChildList[ IndexA ] = ChildB.transform;
-					ChildList[ IndexB ] = ChildA.transform;
-
-					Grid.ResetPosition( ChildList );
-				}
-			}
         }
 
 		public static void ToggleMiniNavPanel<T>() where T: Panel_Base

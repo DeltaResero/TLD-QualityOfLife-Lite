@@ -1,20 +1,9 @@
 ﻿using Il2Cpp;
-using Il2CppTLD.Gear;
-using Il2CppVLB;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace QualityOfLife
 {
     internal class GearHelper
     {
-        // Replacement for GearItem.LoadGearItemPrefab, which was removed in TLD 2.58.
-        public static GearItem? LoadGearItemPrefab( string Name )
-        {
-            GameObject? Prefab = Addressables.LoadAssetAsync<GameObject>( Name ).WaitForCompletion();
-            return Prefab?.GetComponent<GearItem>();
-        }
-
         public static int CompareGearItemByCondition( GearItem A, GearItem B )
         {
             float ConditionA = A.GetNormalizedCondition();
@@ -134,55 +123,6 @@ namespace QualityOfLife
                     __result.Add( ItemList[ 0 ] );
                 }
             }
-        }
-
-        public static void TransferItems( Container? From, Container? To )
-        {
-			if ( From != null && To != null )
-			{
-				while ( From.m_Items.Count > 0 )
-				{
-					GearItem Item = From.m_Items[ 0 ];
-					From.RemoveGear( Item );
-					To.AddGear( Item );
-				}
-			}
-        }
-
-        public static GearItem? GetItemByID( Il2CppSystem.Collections.Generic.List<GearItemObject> Items, int InstanceID )
-        {
-            foreach ( GearItemObject ItemObject in Items )
-            {
-                if ( ItemObject != null && ItemObject.m_GearItem != null && ItemObject.m_GearItem.m_InstanceID == InstanceID )
-                {
-                    return ItemObject.m_GearItem;
-                }
-            }
-            return null;
-        }
-
-        public static Container? FindOrCreateGearContainer( GearItem Item, Container? TemplateContainer = null )
-        {
-            if ( Item != null )
-            {
-                Container GearContainer = Item.gameObject.GetOrAddComponent<Container>();
-                if ( GearContainer != null )
-                {
-                    if ( GearContainer.m_ObjectAnims == null )
-                    {
-                        GearContainer.m_ObjectAnims = new( 0 );
-                    }
-
-                    if ( TemplateContainer != null )
-                    {
-                        GearContainer.m_Capacity = TemplateContainer.m_Capacity;
-                        GearContainer.m_CloseAudio = TemplateContainer.m_CloseAudio;
-                        GearContainer.m_OpenAudio = TemplateContainer.m_OpenAudio;
-                    }
-                }
-                return GearContainer;
-            }
-            return null;
         }
     }
 
