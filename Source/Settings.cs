@@ -123,10 +123,6 @@ namespace QualityOfLife
         [Description( "Makes the journal key open the journal, not DLC objectives." )]
         public bool JournalOpensJournal = true;
 
-        [Name( "Separate Interact" )]
-        [Description( "Separate interact with objects so it doesn't share the same controls as shooting." )]
-        public bool SeparateInteract = true;
-
         [Name( "Highlight Selection" )]
         [Description( "Changes the background color of items on the Harvest, FireStart and IceFishing UI to show which row has keyboard focus." )]
         public bool HighlightSelection = true;
@@ -148,11 +144,11 @@ namespace QualityOfLife
         public float QuickSelectHoldDuration = 0.25f;
 
         [Name( "Accept / Interact" )]
-        [Description( "The key for accepting menu choices and interacting with objects in the world." )]
+        [Description( "The key for accepting menu choices." )]
         public KeyCode InteractKey = KeyCode.E;
 
         [Name( "Drop / Put Back" )]
-        [Description( "The key for dropping items or putting them back while inpecting them." )]
+        [Description( "The key for dropping items." )]
         public KeyCode DropKey = KeyCode.Q;
 
         [Name( "Equip / Consume" )]
@@ -168,7 +164,7 @@ namespace QualityOfLife
         public KeyCode TradesKey = KeyCode.T;
 
         [Name( "Precision Rotate" )]
-        [Description( "When this key is held, rotating the placement object with mouse wheel is more precise." )]
+        [Description( "When this key is held, rotating the safe dial with mouse wheel is more precise." )]
         public KeyCode PrecisionRotateKey = KeyCode.LeftShift;
 
         [Name( "Navigate Quick Select" )]

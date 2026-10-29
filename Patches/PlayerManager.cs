@@ -1,51 +1,11 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
 using Il2CppTLD.Gear;
-using Il2CppTLD.Interactions;
-using Il2CppTLD.Placement;
 using Il2CppTLD.SaveState;
 using UnityEngine;
 
 namespace QualityOfLife
 {
-    [HarmonyPatch( typeof( PlayerManager ), "InteractiveObjectsProcess" )]
-	internal class Patch_PlayerManager_InteractiveObjectsProcess
-	{
-        static bool Prefix( PlayerManager __instance )
-		{
-			if ( Settings.Instance.EnableMod && Settings.Instance.SeparateInteract )
-			{
-				float Range = __instance.ComputeModifiedPickupRange( __instance.GetDefaultPlacementDistance() );
-				GameObject GameObj = __instance.GetInteractiveObjectUnderCrosshairs( Range );
-				if ( GameObj != null )
-				{
-					IInteraction[] Interactions = GameObj.GetComponentsInChildren<IInteraction>();
-					foreach ( IInteraction Interaction in Interactions )
-					{
-						if ( Interaction != null && Interaction.IsEnabled )
-						{
-							__instance.SetCurrentInteraction( Interaction );
-							break;
-						}
-					}
-                }
-				else
-				{
-					if ( __instance.ActiveInteraction != null && !__instance.ActiveInteraction.GetInteractiveObject().GetComponentInChildren<LoadingZone>() )
-					{
-						__instance.SetCurrentInteraction( null );
-					}
-
-					GameObject NearObj = __instance.GetInteractiveObjectNearCrosshairs( Range );
-					__instance.IsInteractionNearCrosshair = NearObj != null;
-				}
-
-				return false;
-			}
-			return true;
-		}
-	}
-
 	[HarmonyPatch( typeof( PlayerManager ), "PlaceMeshInWorld" )]
     internal class Patch_PlayerManager_PlaceMeshInWorld
 	{
@@ -66,24 +26,6 @@ namespace QualityOfLife
 							}
 						}
 					}
-				}
-			}
-			return true;
-		}
-	}
-
-    [HarmonyPatch( typeof( PlayerManager ), "UpdateActiveInteraction" )]
-	internal class Patch_PlayerManager_UpdateActiveInteraction
-	{
-        static bool Prefix( PlayerManager __instance )
-		{
-			if ( Settings.Instance.EnableMod && Settings.Instance.SeparateInteract && __instance.ActiveInteraction != null )
-			{
-				bool bClickAndHold = !BaseStateSingleton<SettingsState>.Instance.m_DisableClickHold;
-
-				if ( bClickAndHold && __instance.IsClickHoldActive() && ModInput.GetKeyUp( __instance, Settings.Instance.InteractKey ) )
-				{
-                    __instance.TryCancelHoldInteraction();
 				}
 			}
 			return true;
@@ -117,59 +59,6 @@ namespace QualityOfLife
 
             bool bCanDropItemInHands = true;
 			bool bDropKeyDown = ModInput.GetKeyDown( __instance, Settings.Instance.DropKey );
-
-            if ( Settings.Instance.SeparateInteract )
-			{
-				__instance.m_PlaceMeshRotationDegreesPerSecond = 0;
-				__instance.m_PlaceDecalRotationDegreesPerSecond = 0;
-
-				if ( ModInput.GetKeyDown( __instance, Settings.Instance.PrecisionRotateKey ) )
-				{
-					__instance.m_PlaceMeshMouseWheelRotationDegrees = 1;
-					__instance.m_PlaceDecalMouseWheelRotationDegrees = 2;
-				}
-
-				if ( ModInput.GetKeyUp( __instance, Settings.Instance.PrecisionRotateKey ) )
-				{
-					__instance.m_PlaceMeshMouseWheelRotationDegrees = 10;
-					__instance.m_PlaceDecalMouseWheelRotationDegrees = 20;
-				}
-
-				if ( bDropKeyDown )
-				{
-					bool InPlacementMode = __instance.IsInPlacementMode();
-
-					if ( __instance.ActiveInteraction != null && !InPlacementMode )
-					{
-                        GameObject ObjectToPlace = __instance.ActiveInteraction.GetInteractiveObject();
-						if ( ObjectToPlace != null )
-						{
-                            if ( ObjectToPlace.GetComponent<Inspect>() != null )
-                            {
-                                __instance.StartPlaceMesh( ObjectToPlace, PlaceMeshFlags.None );
-                            }
-                            else if ( ObjectToPlace.GetComponent<Placeable>() != null )
-                            {
-                                float PickupRange = GameManager.GetGlobalParameters().m_MaxDecorationPickupRange;
-                                DecorationItem DecoItem = ObjectToPlace.GetComponent<DecorationItem>();
-                                PlaceMeshRules Rules = DecoItem != null ? DecoItem.GetPlacementRules() : PlaceMeshRules.Default;
-                                __instance.StartPlaceMesh( ObjectToPlace, PickupRange, PlaceMeshFlags.None, Rules );
-                            }
-						}
-                        bCanDropItemInHands = false;
-                    }
-                    else if ( InPlacementMode )
-					{
-						__instance.CancelPlacementMode();
-                        bCanDropItemInHands = false;
-                    }
-                }
-            }
-            else
-			{
-                __instance.m_PlaceMeshRotationDegreesPerSecond = 60;
-                __instance.m_PlaceDecalRotationDegreesPerSecond = 120;
-            }
 
 			if ( bDropKeyDown && __instance.GetControlMode() == PlayerControlMode.BigCarry )
 			{

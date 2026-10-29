@@ -53,9 +53,6 @@ Show remaining bait on fishing UI.
 Show Tipup condition on fishing UI.
 
 ## Input
-### Separate Interact
-Separate interact with objects so it doesn't share the same controls as shooting.
-
 ### Highlight Selection
 Changes the background color of items on the Harvest and FireStart UI to show which row has keyboard focus.
 
@@ -158,16 +155,16 @@ Which type of items held in player's hands can be dropped with the Drop key. (No
 Hold long QuickSelect Key must be held down to show Radial UI. (Default: 0.25)
 
 ### Accept / Interact
-The key for accepting menu choices and interacting with objects in the world.
+The key for accepting menu choices.
 
 ### Drop / Put Back
-The key for dropping items or putting them back while inpecting them.
+The key for dropping items.
 
 ### Equip / Consume
 The key equipping items or consuming them.
 
 ### Precision Rotate
-When this key is held, rotating the placement object with mouse wheel is more precise.
+When this key is held, rotating the safe dial with mouse wheel is more precise.
 
 ### Navigate Quick Select
 Quick select key to equip Charcoal.

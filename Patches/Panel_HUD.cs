@@ -5,42 +5,6 @@ using UnityEngine;
 namespace QualityOfLife
 {
 
-    [HarmonyPatch( typeof( Panel_HUD ), "Initialize" )]
-    internal class Patch_Panel_HUD_Initialize
-    {
-        static void Postfix( Panel_HUD __instance )
-        {
-            if ( Settings.Instance.EnableMod )
-            {
-				WidgetUtils.GetControlSchemeMouse( __instance.m_InspectMode_Equip.transform, out UILabel? EquipLabel, out UISprite? EquipSprite );
-				WidgetUtils.GetControlSchemeMouse( __instance.m_InspectMode_Take.transform, out UILabel? TakeLabel, out UISprite? TakeSprite );
-
-				UILabel? PutBackLabel = __instance.m_Button_InspectModePutBack_PC.GetComponentInChildren<UILabel>( true );
-				UISprite? PutBackSprite = __instance.m_Button_InspectModePutBack_PC.GetComponentInChildren<UISprite>( true );
-
-				if ( EquipLabel != null )
-				{
-					if ( PutBackLabel == null && PutBackSprite != null )
-					{
-						PutBackLabel = GameObject.Instantiate( EquipLabel.gameObject, PutBackSprite.transform ).GetComponent<UILabel>();
-						PutBackLabel.transform.localPosition = Vector3.zero;
-						PutBackLabel.fontSize = 18;
-					}
-
-					if ( TakeLabel == null && TakeSprite != null )
-					{
-						TakeLabel = GameObject.Instantiate( EquipLabel.gameObject, TakeSprite.transform ).GetComponent<UILabel>();
-						TakeLabel.transform.localPosition = Vector3.zero;
-						TakeLabel.fontSize = 18;
-					}
-				}
-
-				WidgetUtils.SetActive( PutBackLabel, false );
-				WidgetUtils.SetActive( TakeLabel, false );
-            }
-        }
-    }
-
     [HarmonyPatch( typeof( Panel_HUD ), "Enable" )]
     internal class Patch_Panel_HUD_Enable
     {
@@ -136,39 +100,6 @@ namespace QualityOfLife
                     }
                 }
             }
-        }
-    }
-
-    [HarmonyPatch( typeof( Panel_HUD ), "Update" )]
-    internal class Patch_Panel_HUD_Update
-    {
-        static void Postfix( Panel_HUD __instance )
-        {
-			WidgetUtils.GetControlSchemeMouse( __instance.m_InspectMode_Take.transform, out UILabel? TakeLabel, out UISprite? TakeSprite );
-
-			UILabel PutBackLabel = __instance.m_Button_InspectModePutBack_PC.GetComponentInChildren<UILabel>( true );
-			UISprite PutBackSprite = __instance.m_Button_InspectModePutBack_PC.GetComponentInChildren<UISprite>( true );
-
-            if ( Settings.Instance.EnableMod && Settings.Instance.SeparateInteract )
-			{
-				WidgetUtils.SetSprite( PutBackSprite, "genericButton_normal", 32, 30 );
-				WidgetUtils.SetSprite( TakeSprite, "genericButton_normal", 32, 30 );
-				WidgetUtils.SetLabelText( PutBackLabel, Settings.Instance.DropKey.ToString() );
-				WidgetUtils.SetLabelText( TakeLabel, Settings.Instance.InteractKey.ToString() );
-				WidgetUtils.SetActive( PutBackLabel, true );
-				WidgetUtils.SetActive( TakeLabel, true );
-
-				WidgetUtils.EnsureChildOrder( __instance.m_InspectMode_ButtonLayout, __instance.m_InspectMode_PutBack, __instance.m_InspectMode_Take );
-			}
-			else
-			{
-				WidgetUtils.SetSprite( PutBackSprite, "ico_mouseButtonR", 42, 42 );
-				WidgetUtils.SetSprite( TakeSprite, "ico_mouseButtonL", 42, 42 );
-				WidgetUtils.SetActive( PutBackLabel, false );
-				WidgetUtils.SetActive( TakeLabel, false );
-
-				WidgetUtils.EnsureChildOrder( __instance.m_InspectMode_ButtonLayout, __instance.m_InspectMode_Take, __instance.m_InspectMode_PutBack );
-			}
         }
     }
 
