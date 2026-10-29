@@ -72,7 +72,7 @@ namespace QualityOfLife
 		[Description( "The rotation of items when dropped.\n"+
 					  "StickNorth - Use base game behaviour.\n"+
 					  "PlayerFacing - Drop items facing the same direction as the player.\n"+
-					  "Random - Drop items facing a random diration." )]
+					  "Random - Drop items facing a random direction." )]
 		public ItemDropRotationType ItemDropRotation = ItemDropRotationType.PlayerFacing;
 
 
@@ -82,7 +82,7 @@ namespace QualityOfLife
         public bool FireAutoSelectLitTorch = true;
 
         [Name( "Auto-Select Mag Lens" )]
-        [Description( "If the the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled." )]
+        [Description( "If the Mag Lens is able to be used, then auto select it.  A lit torch takes precedence if 'Auto-Select Lit Torch' is enabled." )]
         public bool FireAutoSelectMagLens = true;
 
         [Name( "Auto-Skip Birch Bark" )]
@@ -90,7 +90,7 @@ namespace QualityOfLife
         public bool FireAutoSkipBirchBark = true;
 
         [Name( "Remember Selection" )]
-        [Description( "Remember previous selected items and auto select them.  Above options take precedence is enabled." )]
+        [Description( "Remember previous selected items and auto select them.  Above options take precedence if enabled." )]
         public bool FireRememberSelection = true;
 
 
@@ -126,7 +126,7 @@ namespace QualityOfLife
         public DropItemType DropItemInHands = DropItemType.Any;
 
         [Name( "QuickSelect Hold Duration" )]
-        [Description( "Hold long QuickSelect Key must be held down to show Radial UI. (Default: 0.25)" )]
+        [Description( "How long a QuickSelect key must be held down to show the Radial UI. (Default: 0.25)" )]
         public float QuickSelectHoldDuration = 0.25f;
 
         [Name( "Accept / Interact" )]
@@ -138,7 +138,7 @@ namespace QualityOfLife
         public KeyCode DropKey = KeyCode.Q;
 
         [Name( "Equip / Consume" )]
-        [Description( "The key equipping items or consuming them." )]
+        [Description( "The key for equipping items or consuming them." )]
         public KeyCode EquipKey = KeyCode.Space;
 
         [Name( "Objectives" )]
@@ -162,7 +162,7 @@ namespace QualityOfLife
         public KeyCode LightSourceKey = KeyCode.Alpha5;
 
         [Name( "Weapon Radial" )]
-        [Description( "Quick select key to show the Weapon radial UI." )]
+        [Description( "Quick select key to show the Weapon radial UI. (Hold to show menu. Press for default behaviour.)" )]
         public KeyCode WeaponKey = KeyCode.Alpha6;
 
 
@@ -234,7 +234,7 @@ namespace QualityOfLife
 		public bool ShowTemperatureLabels = true;
 
         [Name( "ScrollWheel Item Selection" )]
-        [Description( "ScrollWheel changes selected item istead of changing the page." )]
+        [Description( "ScrollWheel changes selected item instead of changing the page." )]
         public bool ScrollWheelItemSelection = true;
 
 
