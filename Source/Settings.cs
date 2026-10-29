@@ -208,12 +208,6 @@ namespace QualityOfLife
         public bool TorchLightAlwaysShow = true;
 
 
-        [Section( "Toilet" )]
-        [Name( "Water Non Potable" )]
-        [Description( "When enabled, water taken from toilets is non potable." )]
-        public bool ToiletNonPotable = true;
-
-
 		[Section( "Travois" )]
 		[Name( "Pickup With Contents" )]
 		[Description( "When enabled, allows picking up a Travois while items are still inside.  Also enables transfering items to a Travois in your inventory." )]

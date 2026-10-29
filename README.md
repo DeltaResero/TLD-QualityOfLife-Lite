@@ -196,10 +196,6 @@ The radial menu will equip the lowest quality torch.
 ### Always Select Starter
 Always show the torch light UI to select the starter item.  This helps prevent accidental usage of matches.
 
-## Toilet
-### Water Non Potable
-When enabled, water taken from toilets is non potable.
-
 ## Travois
 ### Pickup With Contents
 When enabled, allows picking up a Travois while items are still inside.  Also enables transfering items to a Travois in your inventory.
