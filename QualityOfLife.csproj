@@ -83,8 +83,13 @@
 	</Target>
 
 	<Target Name="Zip" AfterTargets="GetAssmeblyVersion" Condition=" '$(Configuration)' == 'Release' ">
+		<!--The assembly version always has four parts (2.0.0.0), so trim it back to the mod's three.-->
+		<PropertyGroup>
+			<_ZipVersion>%(MyAssemblyIdentities.Version)</_ZipVersion>
+			<_ZipVersion>$([System.Version]::Parse('$(_ZipVersion)').ToString(3))</_ZipVersion>
+		</PropertyGroup>
 		<RemoveDir Directories="$(IntermediateOutputPath)zip" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(IntermediateOutputPath)zip" />
-		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-QualityOfLife-Lite-%(MyAssemblyIdentities.Version).zip" Overwrite="true" />
+		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-QualityOfLife-Lite-$(_ZipVersion).zip" Overwrite="true" />
 	</Target>
 </Project>
