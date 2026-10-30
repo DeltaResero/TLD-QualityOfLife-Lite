@@ -5,6 +5,9 @@
 		<!--This is the .NET version the mod will be compiled with. Don't change it.-->
 		<TargetFramework>net6.0</TargetFramework>
 
+		<!--The DLL name.  It differs from the original's QualityOfLife.dll so the two never overwrite each other.-->
+		<AssemblyName>QualityOfLifeLite</AssemblyName>
+
 		<!--net6.0 is out of support, but MelonLoader 0.7.x still runs mods on it.-->
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
 
@@ -80,7 +83,8 @@
 	</Target>
 
 	<Target Name="Zip" AfterTargets="GetAssmeblyVersion" Condition=" '$(Configuration)' == 'Release' ">
+		<RemoveDir Directories="$(IntermediateOutputPath)zip" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(IntermediateOutputPath)zip" />
-		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-$(AssemblyName)-Lite-%(MyAssemblyIdentities.Version).zip" Overwrite="true" />
+		<ZipDirectory SourceDirectory="$(IntermediateOutputPath)zip" DestinationFile="TLD-QualityOfLife-Lite-%(MyAssemblyIdentities.Version).zip" Overwrite="true" />
 	</Target>
 </Project>
